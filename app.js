@@ -7,9 +7,6 @@ const questions = [
     {question: 'Create A Password', type: 'password'}
 ];
 
-// Welcome Text After Completing Form
-const welcomeText = 'Welcome to our company';
-
 // Transition Times
 const shakeTime = 100; // Shake Transition Time
 const switchTime = 200; // Transition Between questions
@@ -89,14 +86,29 @@ function transform(x, y) {
 }
 
 // Validate Field
+// function validate() {
+//     // Make Sure Pattern Matches If There Is One
+//     
+//     }
+// }
+
 function validate() {
     // Make Sure Pattern Matches If There Is One
-    if (!inputField.value.match(questions[position].pattern || /.+/)){
+    console.log(inputField.value);
+    // console.log(typeof  inputField.value);
+    
+    if (inputField.value == " "){
         inputFail();
-    } else {
+    }
+    // match the email symbol @
+    else if (!inputField.value.match(questions[position].pattern || /.+/)) {
+        inputFail();
+    }
+    else {
         inputPass();
     }
 }
+
 
 //  Field Input Fail
 function inputFail() {
@@ -141,7 +153,7 @@ function formComplete() {
     
     const h1 = document.createElement('h1');
     h1.classList.add('end');
-    h1.appendChild(document.createTextNode(`Thanks ${questions[0].answer} ${questions[1].answer}, You are registered and will get an email shortly`));
+    h1.appendChild(document.createTextNode(`Thanks ${questions[0].answer} ${questions[1].answer}, you are registered and will get an email shortly`));
     setTimeout(() => {
         formBox.parentElement.appendChild(h1);
         setTimeout(() => (h1.style.opacity = 1), 50);
